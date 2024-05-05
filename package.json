@@ -1,5 +1,5 @@
 {
-  "name": "cinema-quiz",
+  "name": "MockTrello",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -45,8 +45,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
+    "axios": "^1.6.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "styled-components": "^6.1.9",
+    "zustand": "^4.5.2"
   }
 }
