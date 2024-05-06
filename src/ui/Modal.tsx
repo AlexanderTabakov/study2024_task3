@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import Button from './Button';
 
@@ -75,14 +75,57 @@ const Container = styled.div`
         display: flex;
         align-items: center;
         gap: 5px;
-    }
-
-   
+    } 
     
-
 `
 
 const Modal = () => {
+
+
+    const [formValues, setFormValues] = useState(null)
+    const [taskName,setTaskName] = useState('')
+    const [taskDescription,setTaskDescription] = useState('')
+    const [tag, setTag] = useState('')
+
+    const changeTaskName = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setTaskName((e.target as HTMLInputElement).value.trim());
+    };
+
+    console.log('taskName', taskName)
+
+    const changeTaskDescription = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setTaskDescription((e.target as HTMLInputElement).value.trim());
+
+    };
+
+    console.log('taskDescription', taskDescription)
+
+    const changeTag = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setTag((e.target as HTMLInputElement).value.trim());
+    };
+
+    const onSubmit = () => {
+        // e.preventDefault()
+        let id =  Date.now()
+        setFormValues({
+            id:id,
+            taskName:taskName,
+            taskDescription:taskDescription,
+            tag
+        })
+
+        console.log('formValues' , formValues)
+    }
+
+    const onReset = () => {
+        setFormValues(null)
+        setTaskName('')
+        setTaskDescription('')
+        setTag('')
+    }
+
+
+
     return (
         <Container>
             <h2>Create task</h2>
@@ -95,6 +138,7 @@ const Modal = () => {
                     className={'input'}
                     type='text'
                     id='taskName'
+                    onChange={changeTaskName}
                 />
             </div>
 
@@ -107,6 +151,7 @@ const Modal = () => {
                     name={'textInput'}
                     className={'inputText'}
                     id='taskDescription'
+                    onChange={changeTaskDescription}
                 />
             </form>
 
@@ -120,17 +165,16 @@ const Modal = () => {
                     className={'input'}
                     type='text'
                     id='titleTag'
+                    onChange={changeTag}
                 />
                 <span><button>+</button></span>
             </div>
 
             <div className={'btns'}>
-                <Button type={'submit'} children={'Save'}/>
-                <Button type={'button'} children={'Cancel'}/>
+                <Button type={'submit'} children={'Save'} onClick={onSubmit}/>
+                <Button type={'button'} children={'Cancel'} onClick={onReset}/>
 
             </div>
-
-
 
         </Container>
     );
