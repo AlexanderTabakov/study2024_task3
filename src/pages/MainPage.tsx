@@ -7,11 +7,26 @@ import Modal from "ui/Modal";
 
 const MainPage = () => {
 
-    const{getData, data} = useStore()
+    const{getData, data, loading,hasErrors} = useStore()
 
     useEffect(() => {
+
         getData()
+        // setTimeout(getData, 500)
     }, []);
+    console.log(data)
+
+    // if(loading) {
+    //     return <div>Loading...</div>
+    // }
+
+    if(hasErrors){
+        return <div>An error has occurred (((</div>
+    }
+
+    if(data.length < 2 && !data) {
+        return <Modal/>
+    }
 
     return (
         <>
@@ -20,11 +35,31 @@ const MainPage = () => {
             {/*<Column title={'Not Started'}/>*/}
             <Modal/>
 
-        {/*<div>*/}
-        {/*    {data.map((d:any)=>*/}
-        {/*        <div key={d.id} > {d.dishName}</div>*/}
-        {/*    )}*/}
-        {/*</div>*/}
+            {/*<TaskCard title={data}*/}
+            {/*          description={data}*/}
+            {/*          status={data}*/}
+            {/*          key={data}*/}
+            {/*/>*/}
+
+
+
+            {/*{data.map((t:any)=>*/}
+            {/*    <TaskCard*/}
+            {/*        title={t.data.taskName}*/}
+            {/*        description={t.data.taskDescription}*/}
+            {/*        status={t.data.tag}*/}
+            {/*        key={t.data.id}*/}
+            {/*    />)}*/}
+
+            {/*<Column title={'test'}>*/}
+            {/*    {data.map((t:any)=>*/}
+            {/*        <TaskCard title={t.data.taskName}*/}
+            {/*                  description={t.data.taskDescription}*/}
+            {/*                  status={t.data.tag}*/}
+            {/*                  key={t.data.id}*/}
+            {/*        />)}*/}
+            {/*</Column>*/}
+
         </>
 
     );

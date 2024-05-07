@@ -4,19 +4,15 @@ import axios from "axios";
 
 export interface IState {
     data: [];
-    posts: [];
-    restaraunts: [];
     loading: boolean;
     hasErrors: boolean;
-    getData?: any;
-    getPosts?: any;
-    getRestaraunts?: any;
+    getData?:any;
+    postData?:any; /// TODO разобраться с типами
+
 }
 
 const initialState: IState = {
     data: [],
-    posts: [],
-    restaraunts: [],
     loading: false,
     hasErrors: false,
 };
@@ -24,8 +20,6 @@ const initialState: IState = {
 const useStore = create(
     devtools<IState>((set) => ({
         data: [],
-        posts: [],
-        restaraunts: [],
         loading: false,
         hasErrors: false,
 
@@ -33,7 +27,7 @@ const useStore = create(
             set(() => ({ loading: true }));
             try {
                 const response = await axios.get(
-                    "https://65faa5a63909a9a65b1b056e.mockapi.io/dishes",
+                    "https://66374e40288fedf6937ffce3.mockapi.io/boards",
                 );
 
                 set((state: IState) => ({
@@ -45,15 +39,18 @@ const useStore = create(
             }
         },
 
-        getPosts: async () => {
+        postData: async (task:{}) => {
             set(() => ({ loading: true }));
             try {
-                const response = await axios.get(
-                    "https://6625022f04457d4aaf9d8f31.mockapi.io/posts",
-                );
+                //  await axios({
+                //     url:"https://66374e40288fedf6937ffce3.mockapi.io/boards",
+                //     data:task
+                // });
+                await axios.post("https://66374e40288fedf6937ffce3.mockapi.io/boards",{
+                    data:task
+                });
 
                 set((state: IState) => ({
-                    data: (state.posts = response.data),
                     loading: false,
                 }));
             } catch (err) {
@@ -61,26 +58,10 @@ const useStore = create(
             }
         },
 
-        getRestaraunts: async () => {
-            set(() => ({ loading: true }));
-            try {
-                const response = await axios.get(
-                    "https://662a24ed67df268010a2c461.mockapi.io/restaraunts",
-                );
-
-                set((state: IState) => ({
-                    data: (state.restaraunts = response.data),
-                    loading: false,
-                }));
-            } catch (err) {
-                set(() => ({ hasErrors: true, loading: false }));
-            }
-        },
     })),
 );
 
 useStore.getState().getData();
-useStore.getState().getPosts();
-useStore.getState().getRestaraunts();
+
 
 export default useStore;

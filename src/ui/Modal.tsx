@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import Button from './Button';
+import useStore from "store";
 
 
 const Container = styled.div`
@@ -81,7 +82,7 @@ const Container = styled.div`
 
 const Modal = () => {
 
-
+    const {getData, postData} = useStore();
     const [formValues, setFormValues] = useState(null)
     const [taskName,setTaskName] = useState('')
     const [taskDescription,setTaskDescription] = useState('')
@@ -91,31 +92,38 @@ const Modal = () => {
         setTaskName((e.target as HTMLInputElement).value.trim());
     };
 
-    console.log('taskName', taskName)
+    // console.log('taskName', taskName)
 
     const changeTaskDescription = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setTaskDescription((e.target as HTMLInputElement).value.trim());
 
     };
 
-    console.log('taskDescription', taskDescription)
+    // console.log('taskDescription', taskDescription)
 
     const changeTag = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setTag((e.target as HTMLInputElement).value.trim());
     };
 
-    const onSubmit = () => {
-        // e.preventDefault()
+
+    const onSubmit = (e:Event) => {
+        e.preventDefault()
         let id =  Date.now()
         setFormValues({
             id:id,
             taskName:taskName,
             taskDescription:taskDescription,
-            tag
+            tag:tag,
         })
 
+
+        postData(formValues)
+        // setTimeout(test,1000)
+        // onReset()
         console.log('formValues' , formValues)
     }
+
+
 
     const onReset = () => {
         setFormValues(null)
@@ -123,6 +131,7 @@ const Modal = () => {
         setTaskDescription('')
         setTag('')
     }
+
 
 
 
@@ -171,7 +180,7 @@ const Modal = () => {
             </div>
 
             <div className={'btns'}>
-                <Button type={'submit'} children={'Save'} onClick={onSubmit}/>
+                <Button type={'submit'} children={'Save'} onClick={()=>onSubmit(event)}/>
                 <Button type={'button'} children={'Cancel'} onClick={onReset}/>
 
             </div>
