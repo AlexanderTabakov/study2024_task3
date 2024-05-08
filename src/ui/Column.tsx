@@ -54,8 +54,6 @@ const Column:React.FC<IColumn> = ({title,children}) => {
         if (title==='Cancelled') {
             return '#ECEDEF'
         }
-
-
     }
 
 
@@ -63,8 +61,10 @@ const Column:React.FC<IColumn> = ({title,children}) => {
     return (
         <Container>
             <h2 className={'title'}>{title}</h2>
-            <div className={'taskColumn'}></div>
-            {children}
+            <div className={'taskColumn'}>
+                {children}
+            </div>
+
         </Container>
     );
 };
