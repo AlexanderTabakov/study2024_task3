@@ -15,8 +15,7 @@ const Container = styled.div`
         font-size: 24px;
         font-weight: 700;
         line-height: 28px;
-        text-align: left;
-        
+        text-align: left;        
 
     }
     
@@ -33,7 +32,7 @@ const Container = styled.div`
     
 `
 
-const Column:React.FC<IColumn> = ({title}) => {
+const Column:React.FC<IColumn> = ({title,children}) => {
 
     const handleColor = () => {
         if (title === "Not Started") {
@@ -65,6 +64,7 @@ const Column:React.FC<IColumn> = ({title}) => {
         <Container>
             <h2 className={'title'}>{title}</h2>
             <div className={'taskColumn'}></div>
+            {children}
         </Container>
     );
 };
