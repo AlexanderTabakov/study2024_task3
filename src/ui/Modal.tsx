@@ -109,12 +109,20 @@ const Modal = () => {
     const onSubmit = (e:Event) => {
         e.preventDefault()
         let id =  Date.now()
-        setFormValues({
-            id:id,
-            taskName:taskName,
-            taskDescription:taskDescription,
-            tag:tag,
-        })
+       const newFormValue = {
+           id:id,
+           taskName:taskName,
+           taskDescription:taskDescription,
+           tag:tag
+        }
+        // setFormValues({
+        //     id:id,
+        //     taskName:taskName,
+        //     taskDescription:taskDescription,
+        //     tag:tag,
+        // })
+
+        setFormValues(newFormValue)
 
 
         postData(formValues)
@@ -122,6 +130,8 @@ const Modal = () => {
         // onReset()
         console.log('formValues' , formValues)
     }
+
+
 
 
 
@@ -181,7 +191,7 @@ const Modal = () => {
 
             <div className={'btns'}>
                 <Button type={'submit'} children={'Save'} onClick={()=>onSubmit(event)}/>
-                <Button type={'button'} children={'Cancel'} onClick={onReset}/>
+                <Button type={'button'} children={'Cancel'} onClick={()=>onReset()}/>
 
             </div>
 
