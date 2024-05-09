@@ -38,6 +38,22 @@ const MainPage = () => {
         e.dataTransfer.effectAllowed = "move";
     };
 
+    const dropCardHandler = (e: React.DragEvent, board: any) => {
+        board.items.push(currentItem)
+        const currentIndex = currentBoard.items.indexOf(currentItem)
+        currentBoard.items.splice(currentIndex, 1)
+        setBoards(boards.map(b => {
+            if (b.id === board.id) {
+                return board
+            }
+            if (b.id === currentBoard.id) {
+                return currentBoard
+            }
+            return b
+        }))
+
+    }
+
     const dragOverHandler = (e: React.DragEvent) => {
         e.preventDefault();
     };
@@ -85,8 +101,6 @@ const MainPage = () => {
     };
     return (
         <>
-            {/*<TaskCard description={'Description'} status={'Not started'} title={'Title'} tag={'tag3'} />*/}
-            {/*<Column title={'Not Started'}/>*/}
             <Modal />
 
             {hasErrors && <div>Error...</div>}
@@ -116,33 +130,6 @@ const MainPage = () => {
 
                     </Column>)}
             </div>
-
-
-
-            {/*<TaskCard title={data}*/}
-            {/*          description={data}*/}
-            {/*          status={data}*/}
-            {/*          key={data}*/}
-            {/*/>*/}
-
-
-
-            {/*{data.map((t:any)=>*/}
-            {/*    <TaskCard*/}
-            {/*        title={t.data.taskName}*/}
-            {/*        description={t.data.taskDescription}*/}
-            {/*        status={t.data.tag}*/}
-            {/*        key={t.data.id}*/}
-            {/*    />)}*/}
-
-            {/*<Column title={'test'}>*/}
-            {/*    {data.map((t:any)=>*/}
-            {/*        <TaskCard title={t.data.taskName}*/}
-            {/*                  description={t.data.taskDescription}*/}
-            {/*                  status={t.data.tag}*/}
-            {/*                  key={t.data.id}*/}
-            {/*        />)}*/}
-            {/*</Column>*/}
 
         </>
 
