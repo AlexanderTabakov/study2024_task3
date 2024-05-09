@@ -2,7 +2,9 @@ import React from 'react';
 import styled from "styled-components";
 
 interface IColumn {
-    title:string
+    title: string
+    onDrop?: (e: React.DragEvent<HTMLDivElement>) => void;
+    onDragOver?: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
 const Container = styled.div`
@@ -32,7 +34,7 @@ const Container = styled.div`
     
 `
 
-const Column:React.FC<IColumn> = ({title,children}) => {
+const Column: React.FC<IColumn> = ({ title, children }) => {
 
     const handleColor = () => {
         if (title === "Not Started") {
@@ -45,13 +47,13 @@ const Column:React.FC<IColumn> = ({title,children}) => {
         if (title === 'In progress') {
             return '#E3F3FC'
         }
-        if (title==='Blocked') {
+        if (title === 'Blocked') {
             return '#FBE7E5'
         }
-        if (title==='Done') {
+        if (title === 'Done') {
             return '#EEF8E8'
         }
-        if (title==='Cancelled') {
+        if (title === 'Cancelled') {
             return '#ECEDEF'
         }
     }

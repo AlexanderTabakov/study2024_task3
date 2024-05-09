@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import Button from './Button';
 import useStore from "store";
@@ -82,10 +82,10 @@ const Container = styled.div`
 
 const Modal = () => {
 
-    const {getData, postData} = useStore();
+    const { getData, postData } = useStore();
     const [formValues, setFormValues] = useState(null)
-    const [taskName,setTaskName] = useState('')
-    const [taskDescription,setTaskDescription] = useState('')
+    const [taskName, setTaskName] = useState('')
+    const [taskDescription, setTaskDescription] = useState('')
     const [tag, setTag] = useState('')
 
     const changeTaskName = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -106,14 +106,14 @@ const Modal = () => {
     };
 
 
-    const onSubmit = (e:Event) => {
+    const onSubmit = (e: Event) => {
         e.preventDefault()
-        let id =  Date.now()
-       const newFormValue = {
-           id:id,
-           taskName:taskName,
-           taskDescription:taskDescription,
-           tag:tag
+        let id = Date.now()
+        const newFormValue = {
+            id: id,
+            taskName: taskName,
+            taskDescription: taskDescription,
+            tag: tag
         }
         // setFormValues({
         //     id:id,
@@ -128,7 +128,7 @@ const Modal = () => {
         postData(formValues)
         // setTimeout(test,1000)
         // onReset()
-        console.log('formValues' , formValues)
+        console.log('formValues', formValues)
     }
 
 
@@ -149,7 +149,7 @@ const Modal = () => {
         <Container>
             <h2>Create task</h2>
             <div>
-                <label style={{opacity: 1, position: "absolute"}} htmlFor='taskName'>
+                <label style={{ opacity: 1, position: "absolute" }} htmlFor='taskName'>
                 </label>
                 <span className={"placeHolderSpan"}></span>
                 <input
@@ -163,7 +163,7 @@ const Modal = () => {
 
             <h2>Description</h2>
             <form className={'taskDescription'}>
-                <label style={{opacity: 1, position: "absolute"}} htmlFor='taskDescription'>
+                <label style={{ opacity: 1, position: "absolute" }} htmlFor='taskDescription'>
                 </label>
                 <span className={"placeHolderSpan"}></span>
                 <textarea
@@ -176,7 +176,7 @@ const Modal = () => {
 
             <h2>Tags + </h2>
             <div>
-                <label style={{opacity: 1, position: "absolute"}} htmlFor='taskName'>
+                <label style={{ opacity: 1, position: "absolute" }} htmlFor='taskName'>
                 </label>
                 <span className={"placeHolderSpan"}></span>
                 <input
@@ -190,8 +190,8 @@ const Modal = () => {
             </div>
 
             <div className={'btns'}>
-                <Button type={'submit'} children={'Save'} onClick={()=>onSubmit(event)}/>
-                <Button type={'button'} children={'Cancel'} onClick={()=>onReset()}/>
+                <Button type={'submit'} children={'Save'} onClick={() => onSubmit(event)} />
+                <Button type={'button'} children={'Cancel'} onClick={() => onReset()} />
 
             </div>
 

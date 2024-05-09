@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    name?: string;
-    type?: "button" | "reset" | "submit" | undefined;
-    isDisabled?: boolean;
-    onClick?: () => void;
+  name?: string;
+  type?: "button" | "reset" | "submit" | undefined;
+  isDisabled?: boolean;
+  onClick?: () => void;
 }
 
 const ButtonPrimary = styled.button`
@@ -77,37 +77,37 @@ const ButtonSecondary = styled.button`
 `;
 
 const Button: React.FC<IButtonProps> = ({
-                                            name,
-                                            type,
-                                            isDisabled,
-                                            onClick,
-                                            children,
-                                        }) => {
-    return (
-        <>
-            {type == "submit" ? (
-                <ButtonPrimary
-                    onClick={onClick}
-                    type={type}
-                    name={name}
-                    disabled={isDisabled}
-                >
-                    {" "}
-                    {children} {name}{" "}
-                </ButtonPrimary>
-            ) : (
-                <ButtonSecondary
-                    onClick={onClick}
-                    type={type}
-                    name={name}
-                    disabled={isDisabled}
-                >
-                    {" "}
-                    {children} {name}{" "}
-                </ButtonSecondary>
-            )}
-        </>
-    );
+  name,
+  type,
+  isDisabled,
+  onClick,
+  children,
+}) => {
+  return (
+    <>
+      {type == "submit" ? (
+        <ButtonPrimary
+          onClick={onClick}
+          type={type}
+          name={name}
+          disabled={isDisabled}
+        >
+          {" "}
+          {children} {name}{" "}
+        </ButtonPrimary>
+      ) : (
+        <ButtonSecondary
+          onClick={onClick}
+          type={type}
+          name={name}
+          disabled={isDisabled}
+        >
+          {" "}
+          {children} {name}{" "}
+        </ButtonSecondary>
+      )}
+    </>
+  );
 };
 
 export default Button;

@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
-import {string} from "yup";
 
-interface ITaskCard{
+interface ITaskCard {
     title: string,
-    description:string,
-    status:string;
-    tag?:string;
-    onDragStart?:any,
-    onDrop?:any
+    description: string,
+    status: string;
+    tag?: string;
+    onDragStart?: (e: React.DragEvent) => void;
+    onDragOver?: (e: React.DragEvent) => void;
+    onDrop?: (e: React.DragEvent) => void;
 
 }
 
@@ -93,7 +93,7 @@ const Container = styled.div`
 
 `
 
-const TaskCard:React.FC<ITaskCard> = ({title, description, tag, status, onDrop, onDragStart}) => {
+const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver }) => {
 
     const handleColor = () => {
         if (status === "Healthy") {
@@ -107,7 +107,11 @@ const TaskCard:React.FC<ITaskCard> = ({title, description, tag, status, onDrop, 
     };
 
     return (
-        <Container draggable={true} >
+        <Container draggable={true}
+            onDragOver={onDragOver}
+            onDragStart={onDragStart}
+            onDrop={onDrop}
+        >
             <div className={'title'}> <h3> {title} </h3> </div>
             <div className={'description'}>  <p> {description}</p>  </div>
             <div className={'status'}>
@@ -116,7 +120,7 @@ const TaskCard:React.FC<ITaskCard> = ({title, description, tag, status, onDrop, 
             <div className={'tagLayout'}>
                 <p className={'tag'}> {tag}</p>
             </div>
-        </Container>
+        </Container >
     );
 };
 
