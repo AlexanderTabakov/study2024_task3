@@ -5,6 +5,7 @@ interface IColumn {
     title: string
     onDrop?: (e: React.DragEvent<HTMLDivElement>) => void;
     onDragOver?: (e: React.DragEvent<HTMLDivElement>) => void;
+    // onDragOver?: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
 const Container = styled.div`
@@ -34,7 +35,7 @@ const Container = styled.div`
     
 `
 
-const Column: React.FC<IColumn> = ({ title, children }) => {
+const Column: React.FC<IColumn> = ({ title, children, onDrop, onDragOver }) => {
 
     const handleColor = () => {
         if (title === "Not Started") {
