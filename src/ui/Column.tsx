@@ -11,6 +11,7 @@ interface IColumn {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 15px;
     height: 95vh;
     width:clamp(170px, 10vw, 256px);
     .title{
@@ -25,6 +26,7 @@ const Container = styled.div`
     .taskColumn {
         display: flex;
         flex-direction: column;
+        gap: 15px;
         height: 100%;
         padding: 24px;
         border-radius:8px;
@@ -35,13 +37,11 @@ const Container = styled.div`
     
 `
 
-<<<<<<< HEAD
-const Column: React.FC<IColumn> = ({ title, children, onDragOver, onDrop }) => {
-=======
-const Column: React.FC<IColumn> = ({ title, children, onDrop, onDragOver }) => {
->>>>>>> b130932b1a467c390d9549f8e94c07ff8e78d144
 
-    const handleColor = () => {
+const Column: React.FC<IColumn> = ({ title, children, onDrop, onDragOver }) => {
+
+
+     const handleColor = () => {
         if (title === "Not Started") {
             return "#F8FAFC";
         }

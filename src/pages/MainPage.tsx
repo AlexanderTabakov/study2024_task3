@@ -38,21 +38,6 @@ const MainPage = () => {
         e.dataTransfer.effectAllowed = "move";
     };
 
-    const dropCardHandler = (e: React.DragEvent, board: any) => {
-        board.items.push(currentItem)
-        const currentIndex = currentBoard.items.indexOf(currentItem)
-        currentBoard.items.splice(currentIndex, 1)
-        setBoards(boards.map(b => {
-            if (b.id === board.id) {
-                return board
-            }
-            if (b.id === currentBoard.id) {
-                return currentBoard
-            }
-            return b
-        }))
-
-    }
 
     const dragOverHandler = (e: React.DragEvent) => {
         e.preventDefault();

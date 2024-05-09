@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import handleColor from './Column'
 
 interface ITaskCard {
     title: string,
@@ -97,15 +98,48 @@ const Container = styled.div`
 const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver }) => {
 
     const handleColor = () => {
-        if (status === "Healthy") {
-            return "yellow";
+        if (status === "Not Started") {
+            return "#F8FAFC";
         }
 
-        if (status === "Trending") {
-            return "red";
+        if (status === "Ready") {
+            return "#EBEBFF";
         }
-        return "green";
-    };
+        if (status === 'In progress') {
+            return '#E3F3FC'
+        }
+        if (status === 'Blocked') {
+            return '#FBE7E5'
+        }
+        if (status === 'Done') {
+            return '#EEF8E8'
+        }
+        if (status === 'Cancelled') {
+            return '#BBBFC4'
+        }
+    }
+
+    const handleDotColor = () => {
+        if (status === "Not Started") {
+            return"#BBBFC4"
+        }
+
+        if (status === "Ready") {
+            return "##6253DA";
+        }
+        if (status === 'In progress') {
+            return '#6CBFEF'
+        }
+        if (status === 'Blocked') {
+            return '#F0766B'
+        }
+        if (status === 'Done') {
+            return '#A3D982'
+        }
+        if (status === 'Cancelled') {
+            return '#BBBFC4'
+        }
+    }
 
     return (
         <Container draggable={true}
@@ -115,8 +149,9 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
         >
             <div className={'title'}> <h3> {title} </h3> </div>
             <div className={'description'}>  <p> {description}</p>  </div>
-            <div className={'status'}>
-                <div className={'dot'}></div>
+            <div className={'status'}
+                 style={{ background: handleColor() }}>
+                <div className={'dot'} style={{ background: handleDotColor() }}></div>
                 <p> {status}</p></div>
             <div className={'tagLayout'}>
                 <p className={'tag'}> {tag}</p>
