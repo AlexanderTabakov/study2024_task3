@@ -35,11 +35,7 @@ const Container = styled.div`
     
 `
 
-<<<<<<< HEAD
-const Column: React.FC<IColumn> = ({ title, children, onDragOver, onDrop }) => {
-=======
 const Column: React.FC<IColumn> = ({ title, children, onDrop, onDragOver }) => {
->>>>>>> b130932b1a467c390d9549f8e94c07ff8e78d144
 
     const handleColor = () => {
         if (title === "Not Started") {
