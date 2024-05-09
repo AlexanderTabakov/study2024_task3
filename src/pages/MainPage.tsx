@@ -58,16 +58,38 @@ const MainPage = () => {
             }
             return b
         }))
-
     }
 
+    function dropCardHandler(e: React.DragEvent, board: any) {
+        e.preventDefault()
+
+        board.items.push(currentItem)
+        const currentIndex = currentBoard.items.indexOf(currentItem)
+        currentBoard.items.splice(currentIndex, 1)
+        setBoards(boards.map(b => {
+            if (b.id === board.id) {
+                return board
+            }
+            if (b.id === currentBoard.id) {
+                return currentBoard
+            }
+            return b
+        }));
+        // (e.target as HTMLDivElement).style.boxShadow = 'none';
+    }
+
+    function dragEndHandler(e: React.DragEvent) {
+    };
+    function dragLeaveHandler(e: React.DragEvent) {
+
+    };
     return (
         <>
             {/*<TaskCard description={'Description'} status={'Not started'} title={'Title'} tag={'tag3'} />*/}
             {/*<Column title={'Not Started'}/>*/}
             <Modal />
 
-            {hasErrors && <div>Error...((</div>}
+            {hasErrors && <div>Error...</div>}
             {loading && <div>Loading....</div>}
 
 
@@ -77,8 +99,8 @@ const MainPage = () => {
                         key={board.id}
                         title={board.title}
                         onDragOver={(e: React.DragEvent) => dragOverHandler(e)}
+                        onDrop={(e: React.DragEvent) => dropCardHandler(e, board)}
                     >
-
                         {board.items.map((item) =>
                             <TaskCard
                                 key={item.id}
@@ -88,6 +110,8 @@ const MainPage = () => {
                                 onDragStart={(e: React.DragEvent) => dragStartHandler(e, board, item)}
                                 onDragOver={(e: React.DragEvent) => dragOverHandler(e)}
                                 onDrop={(e: React.DragEvent) => dropHandler(e, board, item)}
+                                onDragLeave={(e: React.DragEvent) => dragLeaveHandler(e)}
+                                onDragEnd={(e: React.DragEvent) => dragEndHandler(e)}
                             />)}
 
                     </Column>)}

@@ -34,7 +34,7 @@ const Container = styled.div`
     
 `
 
-const Column: React.FC<IColumn> = ({ title, children }) => {
+const Column: React.FC<IColumn> = ({ title, children, onDragOver, onDrop }) => {
 
     const handleColor = () => {
         if (title === "Not Started") {
@@ -63,7 +63,13 @@ const Column: React.FC<IColumn> = ({ title, children }) => {
     return (
         <Container>
             <h2 className={'title'}>{title}</h2>
-            <div className={'taskColumn'}>
+            <div
+                className={'taskColumn'}
+                style={{ background: handleColor() }}
+                onDragOver={onDragOver}
+                onDrop={onDrop}
+            >
+
                 {children}
             </div>
 
