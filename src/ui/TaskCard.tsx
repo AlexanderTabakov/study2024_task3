@@ -6,8 +6,13 @@ interface ITaskCard{
     title: string,
     description:string,
     status:string;
-    tag?:string
+    tag?:string;
+    onDragStart?:any,
+    onDrop?:any
+
 }
+
+//TODO типизировать функции дропа
 
 
 const Container = styled.div`
@@ -88,7 +93,7 @@ const Container = styled.div`
 
 `
 
-const TaskCard:React.FC<ITaskCard> = ({title, description, tag, status}) => {
+const TaskCard:React.FC<ITaskCard> = ({title, description, tag, status, onDrop, onDragStart}) => {
 
     const handleColor = () => {
         if (status === "Healthy") {
@@ -102,7 +107,7 @@ const TaskCard:React.FC<ITaskCard> = ({title, description, tag, status}) => {
     };
 
     return (
-        <Container draggable={true}>
+        <Container draggable={true} >
             <div className={'title'}> <h3> {title} </h3> </div>
             <div className={'description'}>  <p> {description}</p>  </div>
             <div className={'status'}>

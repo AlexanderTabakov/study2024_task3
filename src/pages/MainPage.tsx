@@ -29,6 +29,35 @@ const MainPage = () => {
         {id:6,title:"Cancelled", items:[{id:1,title:"Cancelledtodo1"},{id:2,title:"Cancelledtodo2"}, {id:3,title:"Cancelledtodo3"},]},
     ])
 
+    const [currentBoard, setCurrentBoard] = useState(null)
+    const [currentItem, setCurrentItem] = useState(null)
+
+    const dragStartHandler = (e:Event, board:any, item:any) => {
+        setCurrentBoard(board)
+        setCurrentItem(item)
+    }
+
+
+//TODO Типизировать функцию
+
+    const dropHandler = (e:Event, board:any, item:any) => {
+        e.preventDefault()
+        const currentIndex = currentBoard.items.indexOf(currentItem)
+        currentBoard.items.splice(currentIndex, 1)
+        const dropIndex = board.items.indexOf(item)
+        board.items.splice(dropIndex + 1, 0, currentItem)
+        setBoards(boards.map(b=>{
+            if(b.id===board.id){
+                return board
+            }
+            if(b.id===currentBoard.id) {
+                return currentBoard
+            }
+            return b
+        }))
+
+    }
+
     return (
         <>
             {/*<TaskCard description={'Description'} status={'Not started'} title={'Title'} tag={'tag3'} />*/}
@@ -40,8 +69,18 @@ const MainPage = () => {
 
 
             <div style={{display:'flex', flexDirection:'row'}}>
-                {boards.map((b)=><Column key={b.id} title={b.title}>
-                    {b.items.map((i)=><TaskCard key={i.id} title={i.title} description={i.title} status={i.title}/>)}
+                {boards.map((board)=><Column key={board.id} title={board.title}>
+                    {board.items.map((item)=>
+                        <TaskCard
+                        key={item.id}
+                        title={item.title}
+                        description={item.title}
+                        status={item.title}
+                        onDragStart = {(e:Event)=>dragStartHandler(e,board,item)}
+                        onDrop = {(e:Event)=>dropHandler(e,board,item)}
+
+                        />)}
+
                 </Column>)}
             </div>
 
