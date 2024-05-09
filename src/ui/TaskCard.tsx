@@ -9,7 +9,8 @@ interface ITaskCard {
     onDragStart?: (e: React.DragEvent) => void;
     onDragOver?: (e: React.DragEvent) => void;
     onDrop?: (e: React.DragEvent) => void;
-
+    onDragLeave?: (e: React.DragEvent) => void;
+    onDragEnd?: (e: React.DragEvent) => void;
 }
 
 //TODO типизировать функции дропа
