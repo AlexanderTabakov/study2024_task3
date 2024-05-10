@@ -28,7 +28,7 @@ export interface IState {
 
 const useStore = create(
     devtools<IState>((set, get) => ({
-        data:[{ id: 1, title: "Not Started", items: [] },
+        data:[{ id: 1, title: "Not Started", items: [{ id: 1, title: "todo1" }] },
             { id: 2, title: "Ready", items: [] },
             { id: 3, title: "In progress", items: [] },
             { id: 4, title: "Blocked", items: [] },
@@ -55,16 +55,20 @@ const useStore = create(
         },
 
         // addTask (newTask:IItem) {
-        //     const  task :any = [...get().data[0].items]
+        //     const  task :any = [...get().data[0].items.push(newTask)]
         //     set({data:task})
         // },
 
         addTask (newTask:IItem) {
-            const  task :any = get().data.find((d)=> d.title==='Not Started');
-            if(task) {
-                task.items.push(newTask)
+            const  columnIndex :any = get().data.find((d)=> d.title==='Not Started');
+            if(columnIndex!==-1) {
+                const newTasks = [...get().data[columnIndex].items, newTask]
+                const newColumns = [...get().data.slice(0, columnIndex),
+                    {...get().data[columnIndex], items:newTasks},
+                    ...get().data.slice(columnIndex + 1),
+                ];
+                set({data:newColumns})
             }
-            set({data:task})
         },
 
 

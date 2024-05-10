@@ -7,7 +7,7 @@ import Modal from "ui/Modal";
 
 const MainPage = () => {
 
-    const { getData, data, loading, hasErrors } = useStore()
+    const { getData, data, loading, hasErrors, removeTask } = useStore()
 
 
     if (data.length < 2 && !data) {
@@ -119,6 +119,7 @@ const MainPage = () => {
                     >
                         {board?.items.map((item:IItem) =>
                             <TaskCard
+                                id={item?.id}
                                 key={item?.id}
                                 title={item?.title}
                                 description={item?.title}

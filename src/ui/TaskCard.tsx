@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from "styled-components";
 import handleColor from './Column'
+import useStore from "store";
 
 interface ITaskCard {
     title: string,
     description: string,
+    id:number;
     status: string;
     tag?: string;
     onDragStart?: (e: React.DragEvent) => void;
@@ -21,6 +23,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
     padding: 3px;    
     border-radius: 4px;
     width: clamp(63px, 10vw, 126px);
@@ -32,6 +35,21 @@ const Container = styled.div`
     //cursor: -o-grab;
     //cursor: -ms-grab;
     cursor: grab;
+    button{
+        border:none;
+        width: 4px;
+        background-color: white;
+        color:gray;
+        position: absolute;
+        top:4px;
+        right: 8px;
+        :hover {
+            cursor: pointer;
+            transform: scale(120%);
+        }
+    };
+    
+    
     
     
     .title{
@@ -96,7 +114,9 @@ const Container = styled.div`
 
 `
 
-const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver }) => {
+const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver, id}) => {
+
+    const {removeTask} = useStore()
 
     const handleColor = () => {
         if (status === "Not Started") {
@@ -148,7 +168,8 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
             onDragStart={onDragStart}
             onDrop={onDrop}
         >
-            <div className={'title'}> <h3> {title} </h3> </div>
+            <div className={'title'}> <h3> {title} </h3>
+                <button onClick={()=>removeTask(id)}>x</button> </div>
             <div className={'description'}>  <p> {description}</p>  </div>
             <div className={'status'}
                  style={{ background: handleColor() }}>
