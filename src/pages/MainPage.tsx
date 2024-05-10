@@ -38,21 +38,7 @@ const MainPage = () => {
         e.dataTransfer.effectAllowed = "move";
     };
 
-    const dropCardHandler = (e: React.DragEvent, board: any) => {
-        board.items.push(currentItem)
-        const currentIndex = currentBoard.items.indexOf(currentItem)
-        currentBoard.items.splice(currentIndex, 1)
-        setBoards(boards.map(b => {
-            if (b.id === board.id) {
-                return board
-            }
-            if (b.id === currentBoard.id) {
-                return currentBoard
-            }
-            return b
-        }))
 
-    }
 
     const dragOverHandler = (e: React.DragEvent) => {
         e.preventDefault();
@@ -76,9 +62,24 @@ const MainPage = () => {
         }))
     }
 
-    function dropCardHandler(e: React.DragEvent, board: any) {
-        e.preventDefault()
+    // function dropCardHandler(e: React.DragEvent, board: any) {
+    //     e.preventDefault()
 
+    //     board.items.push(currentItem)
+    //     const currentIndex = currentBoard.items.indexOf(currentItem)
+    //     currentBoard.items.splice(currentIndex, 1)
+    //     setBoards(boards.map(b => {
+    //         if (b.id === board.id) {
+    //             return board
+    //         }
+    //         if (b.id === currentBoard.id) {
+    //             return currentBoard
+    //         }
+    //         return b
+    //     }));
+    //     // (e.target as HTMLDivElement).style.boxShadow = 'none';
+    // }
+    const dropCardHandler = (e: React.DragEvent, board: any) => {
         board.items.push(currentItem)
         const currentIndex = currentBoard.items.indexOf(currentItem)
         currentBoard.items.splice(currentIndex, 1)
@@ -90,8 +91,8 @@ const MainPage = () => {
                 return currentBoard
             }
             return b
-        }));
-        // (e.target as HTMLDivElement).style.boxShadow = 'none';
+        }))
+
     }
 
     function dragEndHandler(e: React.DragEvent) {
