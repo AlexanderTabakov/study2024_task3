@@ -26,6 +26,7 @@ const Container = styled.div`
     width: clamp(63px, 10vw, 126px);
     height: clamp(57px,8vw, 114px );
     box-shadow: 0 1px 4px 0 #00000040;
+    background-color:white;
     //cursor: -webkit-grab;
     //cursor: -moz-grab;
     //cursor: -o-grab;
