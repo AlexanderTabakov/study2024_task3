@@ -12,7 +12,7 @@ const MainPage = () => {
     useEffect(() => {
         getData()
     }, []);
-    console.log(data)
+    // console.log(data)
 
 
 
@@ -109,7 +109,7 @@ const MainPage = () => {
                                 status={item.title}
                                 onDragStart={(e: React.DragEvent) => dragStartHandler(e, board, item)}
                                 onDragOver={(e: React.DragEvent) => dragOverHandler(e)}
-                                onDrop={(e: React.DragEvent) => dropHandler(e, board, item)}
+                                // onDrop={(e: React.DragEvent) => dropHandler(e, board, item)}
                                 onDragLeave={(e: React.DragEvent) => dragLeaveHandler(e)}
                                 onDragEnd={(e: React.DragEvent) => dragEndHandler(e)}
                             />)}
