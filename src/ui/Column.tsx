@@ -41,7 +41,7 @@ const Container = styled.div`
 const Column: React.FC<IColumn> = ({ title, children, onDrop, onDragOver }) => {
 
 
-     const handleColor = () => {
+    const handleColor = () => {
         if (title === "Not Started") {
             return "#F8FAFC";
         }

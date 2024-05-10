@@ -12,7 +12,7 @@ const MainPage = () => {
     useEffect(() => {
         getData()
     }, []);
-    console.log(data)
+    // console.log(data)
 
 
 
@@ -39,6 +39,7 @@ const MainPage = () => {
     };
 
 
+
     const dragOverHandler = (e: React.DragEvent) => {
         e.preventDefault();
     };
@@ -61,9 +62,24 @@ const MainPage = () => {
         }))
     }
 
-    function dropCardHandler(e: React.DragEvent, board: any) {
-        e.preventDefault()
+    // function dropCardHandler(e: React.DragEvent, board: any) {
+    //     e.preventDefault()
 
+    //     board.items.push(currentItem)
+    //     const currentIndex = currentBoard.items.indexOf(currentItem)
+    //     currentBoard.items.splice(currentIndex, 1)
+    //     setBoards(boards.map(b => {
+    //         if (b.id === board.id) {
+    //             return board
+    //         }
+    //         if (b.id === currentBoard.id) {
+    //             return currentBoard
+    //         }
+    //         return b
+    //     }));
+    //     // (e.target as HTMLDivElement).style.boxShadow = 'none';
+    // }
+    const dropCardHandler = (e: React.DragEvent, board: any) => {
         board.items.push(currentItem)
         const currentIndex = currentBoard.items.indexOf(currentItem)
         currentBoard.items.splice(currentIndex, 1)
@@ -75,8 +91,8 @@ const MainPage = () => {
                 return currentBoard
             }
             return b
-        }));
-        // (e.target as HTMLDivElement).style.boxShadow = 'none';
+        }))
+
     }
 
     function dragEndHandler(e: React.DragEvent) {
@@ -108,7 +124,7 @@ const MainPage = () => {
                                 status={board.title}
                                 onDragStart={(e: React.DragEvent) => dragStartHandler(e, board, item)}
                                 onDragOver={(e: React.DragEvent) => dragOverHandler(e)}
-                                onDrop={(e: React.DragEvent) => dropHandler(e, board, item)}
+                                // onDrop={(e: React.DragEvent) => dropHandler(e, board, item)}
                                 onDragLeave={(e: React.DragEvent) => dragLeaveHandler(e)}
                                 onDragEnd={(e: React.DragEvent) => dragEndHandler(e)}
                             />)}
