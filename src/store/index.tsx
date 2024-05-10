@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import axios from "axios";
+import column from "ui/Column";
 
 
 export interface IData  {
@@ -9,8 +10,8 @@ export interface IData  {
     items:IItem[]
 }
 export interface IItem {
-    id:number;
-    title:string;
+    id?:number;
+    title?:string;
 }
 
 export interface IState {
@@ -23,7 +24,6 @@ export interface IState {
     removeTask?:any
 
 }
-
 
 
 const useStore = create(
@@ -54,13 +54,22 @@ const useStore = create(
             }
         },
 
-        addTask (newTask:IState) {
-            const  task :any = [...get().data, newTask ]
+        // addTask (newTask:IItem) {
+        //     const  task :any = [...get().data[0].items]
+        //     set({data:task})
+        // },
+
+        addTask (newTask:IItem) {
+            const  task :any = get().data.find((d)=> d.title==='Not Started');
+            if(task) {
+                task.items.push(newTask)
+            }
             set({data:task})
         },
 
-        removeTask (id:any) {
-            const  removeTask:any = [...get().data.filter((t:any)=>t.id!==id) ]
+
+        removeTask (id:number) {
+            const  removeTask:any = [...get().data.filter((t:IItem)=>t.id!==id) ]
             set({data:removeTask})
         },
 

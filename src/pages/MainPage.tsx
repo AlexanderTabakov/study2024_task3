@@ -26,9 +26,8 @@ const MainPage = () => {
     const [boards, setBoards] = useState(null)
     useEffect(() => {
         setBoards(data)
-    }, []);
+    }, [data]);
     console.log(data)
-    // setBoards(data)
 
 
     const [currentBoard, setCurrentBoard] = useState(null)
