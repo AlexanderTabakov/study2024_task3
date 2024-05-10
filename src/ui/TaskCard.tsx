@@ -43,7 +43,7 @@ const Container = styled.div`
         position: absolute;
         top:4px;
         right: 8px;
-        :hover {
+        &:hover {
             cursor: pointer;
             transform: scale(120%);
         }

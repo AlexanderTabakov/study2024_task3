@@ -28,7 +28,7 @@ export interface IState {
 
 const useStore = create(
     devtools<IState>((set, get) => ({
-        data:[{ id: 1, title: "Not Started", items: [{ id: 1, title: "todo1" }] },
+        data:[{ id: 1, title: "Not Started", items: [{ id:76765, title: "todo1" }] },
             { id: 2, title: "Ready", items: [] },
             { id: 3, title: "In progress", items: [] },
             { id: 4, title: "Blocked", items: [] },
