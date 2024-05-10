@@ -106,8 +106,8 @@ const Modal = () => {
     };
 
 
-    const onSubmit = (e: Event) => {
-        e.preventDefault()
+    const onSubmit = () => {
+        // e.preventDefault()
         let id = Date.now()
         const newFormValue = {
             id: id,
@@ -115,19 +115,16 @@ const Modal = () => {
             taskDescription: taskDescription,
             tag: tag
         }
-        // setFormValues({
-        //     id:id,
-        //     taskName:taskName,
-        //     taskDescription:taskDescription,
-        //     tag:tag,
-        // })
 
-        setFormValues(newFormValue)
+        // setFormValues(newFormValue)
 
 
-        postData(formValues)
-        // setTimeout(test,1000)
-        // onReset()
+        postData(newFormValue)
+        // Очистить поля ввода после отправки
+        setTaskName('');
+        setTaskDescription('');
+        setTag('');
+        console.log('newFormValue', newFormValue)
         console.log('formValues', formValues)
     }
 
@@ -158,6 +155,7 @@ const Modal = () => {
                     type='text'
                     id='taskName'
                     onChange={changeTaskName}
+                    value={taskName}
                 />
             </div>
 
@@ -171,6 +169,7 @@ const Modal = () => {
                     className={'inputText'}
                     id='taskDescription'
                     onChange={changeTaskDescription}
+                    value={taskDescription}
                 />
             </form>
 
@@ -184,14 +183,15 @@ const Modal = () => {
                     className={'input'}
                     type='text'
                     id='titleTag'
+                    value={tag}
                     onChange={changeTag}
                 />
                 <span><button>+</button></span>
             </div>
 
             <div className={'btns'}>
-                <Button type={'submit'} children={'Save'} onClick={() => onSubmit(event)} />
-                <Button type={'button'} children={'Cancel'} onClick={() => onReset()} />
+                <Button type={'submit'} children={'Save'} onClick={onSubmit} />
+                <Button type={'button'} children={'Cancel'} onClick={(onReset)} />
 
             </div>
 
