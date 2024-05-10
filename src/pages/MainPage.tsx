@@ -12,7 +12,7 @@ const MainPage = () => {
     useEffect(() => {
         getData()
     }, []);
-    console.log(data)
+    // console.log(data)
 
 
 
