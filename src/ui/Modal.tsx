@@ -17,6 +17,24 @@ const Container = styled.div`
     height: clamp(220px, 29vw, 440px );
     box-shadow: 0 1px 4px 0 #00000040;
 
+    h2{
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        text-align: left;
+
+    }
+    
+    h3{
+        font-family: Inter, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14px;
+        text-align: left;
+        color: #6C6C6C
+
+    }
 
 
     .input {
@@ -161,7 +179,7 @@ const Modal = () => {
                 />
             </div>
 
-            <h2>Description</h2>
+            <h3>Description</h3>
             <form className={'taskDescription'}>
                 <label style={{ opacity: 1, position: "absolute" }} htmlFor='taskDescription'>
                 </label>
@@ -174,7 +192,7 @@ const Modal = () => {
                 />
             </form>
 
-            <h2>Tags + </h2>
+            <h3>Tags + </h3>
             <div>
                 <label style={{ opacity: 1, position: "absolute" }} htmlFor='taskName'>
                 </label>
