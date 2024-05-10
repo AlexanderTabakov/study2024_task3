@@ -17,24 +17,6 @@ const Container = styled.div`
     height: clamp(220px, 29vw, 440px );
     box-shadow: 0 1px 4px 0 #00000040;
 
-    h2{
-        font-family: Inter, sans-serif;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 24px;
-        text-align: left;
-
-    }
-    
-    h3{
-        font-family: Inter, sans-serif;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 14px;
-        text-align: left;
-        color: #6C6C6C
-
-    }
 
 
     .input {
@@ -124,8 +106,8 @@ const Modal = () => {
     };
 
 
-    const onSubmit = () => {
-        // e.preventDefault()
+    const onSubmit = (e: Event) => {
+        e.preventDefault()
         let id = Date.now()
         const newFormValue = {
             id: id,
@@ -173,11 +155,10 @@ const Modal = () => {
                     type='text'
                     id='taskName'
                     onChange={changeTaskName}
-                    value={taskName}
                 />
             </div>
 
-            <h3>Description</h3>
+            <h2>Description</h2>
             <form className={'taskDescription'}>
                 <label style={{ opacity: 1, position: "absolute" }} htmlFor='taskDescription'>
                 </label>
@@ -187,7 +168,6 @@ const Modal = () => {
                     className={'inputText'}
                     id='taskDescription'
                     onChange={changeTaskDescription}
-                    value={taskDescription}
                 />
             </form>
 
@@ -208,8 +188,8 @@ const Modal = () => {
             </div>
 
             <div className={'btns'}>
-                <Button type={'submit'} children={'Save'} onClick={onSubmit} />
-                <Button type={'button'} children={'Cancel'} onClick={(onReset)} />
+                <Button type={'submit'} children={'Save'} onClick={() => onSubmit(event)} />
+                <Button type={'button'} children={'Cancel'} onClick={() => onReset()} />
 
             </div>
 
