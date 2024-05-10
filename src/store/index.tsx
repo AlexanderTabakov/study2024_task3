@@ -2,26 +2,41 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import axios from "axios";
 
+
+export interface IData  {
+    id:number,
+    title:string;
+    items:IItem[]
+}
+export interface IItem {
+    id:number;
+    title:string;
+}
+
 export interface IState {
-    data: [];
+    data: IData[];
     loading: boolean;
     hasErrors: boolean;
     getData?:any;
-    postData?:any; /// TODO разобраться с типами
+    postData?:any; /// TODO разобраться с типами!!!!
+    addTask?:any
+    removeTask?:any
 
 }
 
-const initialState: IState = {
-    data: [],
-    loading: false,
-    hasErrors: false,
-};
+
 
 const useStore = create(
-    devtools<IState>((set) => ({
-        data: [],
+    devtools<IState>((set, get) => ({
+        data:[{ id: 1, title: "Not Started", items: [] },
+            { id: 2, title: "Ready", items: [] },
+            { id: 3, title: "In progress", items: [] },
+            { id: 4, title: "Blocked", items: [] },
+            { id: 5, title: "Done", items: [] },
+            { id: 6, title: "Cancelled", items: [] },],
         loading: false,
         hasErrors: false,
+
 
         getData: async () => {
             set(() => ({ loading: true }));
@@ -38,6 +53,20 @@ const useStore = create(
                 set(() => ({ hasErrors: true, loading: false }));
             }
         },
+
+        addTask (newTask:IState) {
+            const  task :any = [...get().data, newTask ]
+            set({data:task})
+        },
+
+        removeTask (id:any) {
+            const  removeTask:any = [...get().data.filter((t:any)=>t.id!==id) ]
+            set({data:removeTask})
+        },
+
+
+
+
 
         postData: async (task:{}) => {
             set(() => ({ loading: true }));
@@ -61,7 +90,7 @@ const useStore = create(
     })),
 );
 
-useStore.getState().getData();
+// useStore.getState().getData();
 
 
 export default useStore;
