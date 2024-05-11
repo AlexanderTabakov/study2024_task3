@@ -44,7 +44,7 @@ const MainPage = () => {
   const [currentBoard, setCurrentBoard] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
 
-  const dragStartHandler = (e: React.DragEvent, board: any, item: any) => {
+  const dragStartHandler = (e: React.DragEvent, board: IData, item: IItem) => {
     setCurrentBoard(board);
     setCurrentItem(item);
     e.dataTransfer.effectAllowed = "move";
