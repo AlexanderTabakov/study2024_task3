@@ -82,7 +82,7 @@ const Container = styled.div`
 
 const Modal = () => {
 
-    const { getData, postData } = useStore();
+    const { getData, postData,addTask, removeTask } = useStore();
     const [formValues, setFormValues] = useState(null)
     const [taskName, setTaskName] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
@@ -119,7 +119,7 @@ const Modal = () => {
         // setFormValues(newFormValue)
 
 
-        postData(newFormValue)
+        addTask(newFormValue)
         // Очистить поля ввода после отправки
         setTaskName('');
         setTaskDescription('');

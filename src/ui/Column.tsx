@@ -32,7 +32,8 @@ const Container = styled.div`
         padding: 24px;
         border-radius:8px;
         background: #EBEBFF;
-        border: 1px solid #D6D8DB
+        border: 1px solid #D6D8DB;
+        overflow: scroll;
 
     }
     
