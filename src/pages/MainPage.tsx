@@ -121,9 +121,10 @@ const MainPage = () => {
                             <TaskCard
                                 id={item?.id}
                                 key={item?.id}
-                                title={item?.title}
-                                description={item?.title}
+                                title={item?.taskName}
+                                description={item?.taskDescription}
                                 status={board?.title}
+                                tag={item?.tag}
                                 onDragStart={(e: React.DragEvent) => dragStartHandler(e, board, item)}
                                 onDragOver={(e: React.DragEvent) => dragOverHandler(e)}
                                 // onDrop={(e: React.DragEvent) => dropHandler(e, board, item)}
