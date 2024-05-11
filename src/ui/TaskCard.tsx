@@ -102,7 +102,7 @@ const Container = styled.div`
         margin: 2px;
         background-color: #e0e0e0;
         border-radius: 10px;
-        display: inline-block;
+        // display: inline-block;
     }
     
     

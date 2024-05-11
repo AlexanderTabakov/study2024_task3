@@ -10,9 +10,9 @@ export interface IData {
 }
 export interface IItem {
     id: number;
-    taskName:string;
-    taskDescription?:string;
-    tag?:string
+    taskName: string;
+    taskDescription?: string;
+    tag?: string[]
 }
 
 export interface IState {

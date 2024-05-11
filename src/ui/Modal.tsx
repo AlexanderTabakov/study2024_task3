@@ -123,8 +123,8 @@ const Modal = () => {
     const handleRemoveTag = (tagToRemove: any) => {
         setTags(tags.filter(tag => tag !== tagToRemove));
     };
-    const onSubmit = (e: Event) => {
-        e.preventDefault()
+    const onSubmit = () => {
+        // e.preventDefault()
         let id = Date.now()
         const newFormValue = {
             id: id,
@@ -172,6 +172,7 @@ const Modal = () => {
                     type='text'
                     id='taskName'
                     onChange={changeTaskName}
+                    value={taskName}
                 />
             </div>
 
@@ -185,6 +186,8 @@ const Modal = () => {
                     className={'inputText'}
                     id='taskDescription'
                     onChange={changeTaskDescription}
+                    value={taskDescription}
+
                 />
             </form>
 
@@ -213,8 +216,8 @@ const Modal = () => {
 
 
             <div className={'btns'}>
-                <Button type={'submit'} children={'Save'} onClick={() => onSubmit(event)} />
-                <Button type={'button'} children={'Cancel'} onClick={() => onReset()} />
+                <Button type={'submit'} children={'Save'} onClick={onSubmit} />
+                <Button type={'button'} children={'Cancel'} onClick={(onReset)} />
 
             </div>
 
