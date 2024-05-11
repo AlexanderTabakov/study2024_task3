@@ -97,13 +97,13 @@ const Modal = () => {
     const [inputTag, setInputTag] = useState('');
 
     const changeTaskName = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setTaskName((e.target as HTMLInputElement).value.trim());
+        setTaskName((e.target as HTMLInputElement).value);
     };
 
     // console.log('taskName', taskName)
 
     const changeTaskDescription = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setTaskDescription((e.target as HTMLInputElement).value.trim());
+        setTaskDescription((e.target as HTMLInputElement).value);
 
     };
 
