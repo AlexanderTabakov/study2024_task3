@@ -9,71 +9,71 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const ButtonPrimary = styled.button`
-    bottom: 40px;
-    width: fit-content;
-    min-width: 7vw;
-    height: 42px;
-    background-color: #F5F5F5;
-    color: #000000;
-    border: none;
-    border-radius: 3px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: clamp(5px, 1vw, 15px);
-    line-height: 17px;
-    cursor: pointer;
-    font-family: "Roboto", sans-serif;
+  bottom: 40px;
+  width: fit-content;
+  min-width: 7vw;
+  height: 42px;
+  background-color: #f5f5f5;
+  color: #000000;
+  border: none;
+  border-radius: 3px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(5px, 1vw, 15px);
+  line-height: 17px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
 
-    &:hover {
-        background-color: #b1b1b1;
-    }
+  &:hover {
+    background-color: #b1b1b1;
+  }
 
-    &:active {
-        background-color: #a29ec7;
-    }
+  &:active {
+    background-color: #a29ec7;
+  }
 
-    &:focus {
-        background-color: #c3bddc;
-    }
+  &:focus {
+    background-color: #c3bddc;
+  }
 
-    &:disabled {
-        background-color: #e3daf9;
-    }
+  &:disabled {
+    background-color: #e3daf9;
+  }
 `;
 
 const ButtonSecondary = styled.button`
-    bottom: 40px;
-    //width: clamp(30px, 5vw, 96px);
-    width: fit-content;
-    min-width: 7vw;
-    height: 42px;
-    background-color: white;
-    color: #181818;
-    border: #737279 solid 2px;
-    border-radius: 3px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: clamp(5px, 1vw, 15px);
-    line-height: 17px;
-    cursor: pointer;
+  bottom: 40px;
+  //width: clamp(30px, 5vw, 96px);
+  width: fit-content;
+  min-width: 7vw;
+  height: 42px;
+  background-color: white;
+  color: #181818;
+  border: #737279 solid 2px;
+  border-radius: 3px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(5px, 1vw, 15px);
+  line-height: 17px;
+  cursor: pointer;
 
-    &:hover {
-        background-color: #6e41e20a;
-    }
+  &:hover {
+    background-color: #6e41e20a;
+  }
 
-    &:active {
-        background-color: #e7e4ec;
-        opacity: 14%;
-    }
+  &:active {
+    background-color: #e7e4ec;
+    opacity: 14%;
+  }
 
-    &:focus {
-        background-color: rgba(183, 172, 172, 0.48);
-    }
+  &:focus {
+    background-color: rgba(183, 172, 172, 0.48);
+  }
 
-    &:disabled {
-        background-color: #454548;
-    }
+  &:disabled {
+    background-color: #454548;
+  }
 `;
 
 const Button: React.FC<IButtonProps> = ({

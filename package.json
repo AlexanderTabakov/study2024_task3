@@ -29,6 +29,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.5.3",
+    "prettier": "3.2.5",
     "react-confetti": "^6.1.0",
     "react-hook-form": "^7.44.3",
     "sass": "^1.49.9",

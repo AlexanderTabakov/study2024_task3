@@ -1,9 +1,5 @@
-import React from 'react';
+import React from "react";
 
 export function App() {
-    return (
-        <div>
-            Hello world! Тест
-        </div>
-    );
+  return <div>Hello world! Тест</div>;
 }
