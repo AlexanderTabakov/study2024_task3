@@ -23,7 +23,7 @@ const Container = styled.div`
     justify-content: space-around;
     padding: 3px;    
     border-radius: 4px;
-    width: clamp(63px, 10vw, 126px);
+    width: clamp(223px, 10vw, 226px);
     height: clamp(57px,8vw, 114px );
     box-shadow: 0 1px 4px 0 #00000040;
     background-color:white;
@@ -122,7 +122,7 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
 
     const handleDotColor = () => {
         if (status === "Not Started") {
-            return"#BBBFC4"
+            return "#BBBFC4"
         }
 
         if (status === "Ready") {
@@ -151,7 +151,7 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
             <div className={'title'}> <h3> {title} </h3> </div>
             <div className={'description'}>  <p> {description}</p>  </div>
             <div className={'status'}
-                 style={{ background: handleColor() }}>
+                style={{ background: handleColor() }}>
                 <div className={'dot'} style={{ background: handleDotColor() }}></div>
                 <p> {status}</p></div>
             <div className={'tagLayout'}>

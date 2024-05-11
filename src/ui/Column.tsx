@@ -12,10 +12,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
     height: 95vh;
-    width:clamp(170px, 10vw, 256px);
+    width:clamp(270px, 10vw, 356px);
     .title{
-        font-family: Inter sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 24px;
         font-weight: 700;
         line-height: 28px;
@@ -41,7 +42,7 @@ const Container = styled.div`
 const Column: React.FC<IColumn> = ({ title, children, onDrop, onDragOver }) => {
 
 
-     const handleColor = () => {
+    const handleColor = () => {
         if (title === "Not Started") {
             return "#F8FAFC";
         }

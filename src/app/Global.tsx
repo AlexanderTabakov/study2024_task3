@@ -7,6 +7,8 @@ export default createGlobalStyle`
 
         body {
             background-color: #F9F9F9;
+            font-family: "Inter", sans-serif;
+
         }
 
         html, body, div, span, applet, object, iframe,
