@@ -4,16 +4,16 @@ import handleColor from './Column'
 import useStore from "store";
 
 interface ITaskCard {
-    title: string,
-    description: string,
-    id: number;
-    status: string;
-    tag?: string[]; //массив, т.к несколько штук
-    onDragStart?: (e: React.DragEvent) => void;
-    onDragOver?: (e: React.DragEvent) => void;
-    onDrop?: (e: React.DragEvent) => void;
-    onDragLeave?: (e: React.DragEvent) => void;
-    onDragEnd?: (e: React.DragEvent) => void;
+  title: string;
+  description: string;
+  id: number;
+  status: string;
+  tag?: string;
+  onDragStart?: (e: React.DragEvent) => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDrop?: (e: React.DragEvent) => void;
+  onDragLeave?: (e: React.DragEvent) => void;
+  onDragEnd?: (e: React.DragEvent) => void;
 }
 
 //TODO типизировать функции дропа
@@ -84,28 +84,31 @@ const Container = styled.div`
         line-height: 14px;
         text-align: left;
 
-        .dot{
-            border: black 1px solid;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            margin: 4px;
-        }
+    .dot {
+      border: black 1px solid;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin: 4px;
     }
-    
-    .tagLayout {
-        display: flex;
-    }
-    
-    .tag {
-        padding: 5px;
-        margin: 2px;
-        background-color: #e0e0e0;
-        border-radius: 10px;
-        // display: inline-block;
-    }
-    
-    
+  }
+
+  .tagLayout {
+    display: flex;
+  }
+
+  .tag {
+    width: fit-content;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left;
+    background-color: #fff6e1;
+    border-radius: 10px;
+    padding: 3px;
+  }
+`;
 
 `
 
@@ -156,27 +159,33 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
             return '#BBBFC4'
         }
     }
+  };
 
-    return (
-        <Container draggable={true}
-            onDragOver={onDragOver}
-            onDragStart={onDragStart}
-            onDrop={onDrop}
-        >
-            <div className={'title'}> <h3> {title} </h3>
-                <button onClick={() => removeTask(id)}>x</button> </div>
-            <div className={'description'}>  <p> {description}</p>  </div>
-            <div className={'status'}
-                style={{ background: handleColor() }}>
-                <div className={'dot'} style={{ background: handleDotColor() }}></div>
-                <p> {status}</p></div>
-            <div className={'tagLayout'}>
-                {tag?.map((tag, index) => {
-                    <p key={index} className={'tag'}> {tag}</p>
-                })}
-            </div>
-        </Container >
-    );
+  return (
+    <Container
+      draggable={true}
+      onDragOver={onDragOver}
+      onDragStart={onDragStart}
+      onDrop={onDrop}
+    >
+      <div className={"title"}>
+        {" "}
+        <h3> {title} </h3>
+        <button onClick={() => removeTask(id)}>x</button>{" "}
+      </div>
+      <div className={"description"}>
+        {" "}
+        <p> {description}</p>{" "}
+      </div>
+      <div className={"status"} style={{ background: handleColor() }}>
+        <div className={"dot"} style={{ background: handleDotColor() }}></div>
+        <p> {status}</p>
+      </div>
+      <div className={"tagLayout"}>
+        <p className={"tag"}> {tag}</p>
+      </div>
+    </Container>
+  );
 };
 
 export default TaskCard;
