@@ -125,6 +125,10 @@ const Modal = () => {
     };
     const onSubmit = () => {
         // e.preventDefault()
+
+        if (!taskName || !taskDescription) {
+            return;
+        }
         let id = Date.now()
         const newFormValue = {
             id: id,
