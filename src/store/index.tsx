@@ -19,10 +19,10 @@ export interface IState {
     data: IData[];
     loading: boolean;
     hasErrors: boolean;
-    getData?: any;
-    postData?: any; /// TODO разобраться с типами!!!!
-    addTask?: any
-    removeTask?: any
+    getData?: () => Promise<void>
+    postData?: (task:IItem) => Promise<void>; /// TODO разобраться с типами!!!!
+    addTask?: (newTask:IItem) => void
+    removeTask?: (id: number) => void
 
 }
 
@@ -55,10 +55,6 @@ const useStore = create(
             }
         },
 
-        // addTask (newTask:IItem) {
-        //     const  task :any = [...get().data[0].items.push(newTask)]
-        //     set({data:task})
-        // },
 
         addTask(newTask: IItem) {
             const columnIndex: any = get().data.findIndex((d) => d.title === 'Not Started');
@@ -84,7 +80,7 @@ const useStore = create(
 
 
 
-        postData: async (task: {}) => {
+        postData: async (data) => {
             set(() => ({ loading: true }));
             try {
                 //  await axios({
@@ -92,7 +88,7 @@ const useStore = create(
                 //     data:task
                 // });
                 await axios.post("https://66374e40288fedf6937ffce3.mockapi.io/boards", {
-                    data: task
+                    data: data
                 });
 
                 set((state: IState) => ({

@@ -16,6 +16,19 @@ const Container = styled.div`
     width: clamp(230px, 20vw, 464px );
     height: clamp(220px, 29vw, 440px );
     box-shadow: 0 1px 4px 0 #00000040;
+    
+    h3{
+    font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        color:#6C6C6C ;
+    }
+    
+    h2{
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+    }
 
 
 
@@ -24,7 +37,9 @@ const Container = styled.div`
         //width: clamp(250px, 30vw, 800px);
         width: 95%;
         height: clamp(30px, 2vw, 56px);
-        font-family: Inter sans-serif;
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
         font-size: 12px;
         font-weight: 400;
         line-height: 14px;
@@ -58,7 +73,7 @@ const Container = styled.div`
             width: 95%;
             height: 95%;
             resize: none;
-            font-family: Inter sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 12px;
             font-weight: 400;
             line-height: 14px;
@@ -158,7 +173,7 @@ const Modal = () => {
                 />
             </div>
 
-            <h2>Description</h2>
+            <h3>Description</h3>
             <form className={'taskDescription'}>
                 <label style={{ opacity: 1, position: "absolute" }} htmlFor='taskDescription'>
                 </label>

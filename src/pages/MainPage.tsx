@@ -7,7 +7,7 @@ import Modal from "ui/Modal";
 
 const MainPage = () => {
 
-    const { getData, data, loading, hasErrors, removeTask } = useStore()
+    const { getData, data, loading, hasErrors, removeTask, postData } = useStore()
 
 
     if (data.length < 2 && !data) {
@@ -28,6 +28,12 @@ const MainPage = () => {
         setBoards(data)
     }, [data]);
     console.log(data[0].items)
+
+    // useEffect(() => {
+    //     postData(boards)
+    // }, []);
+
+
 
 
     const [currentBoard, setCurrentBoard] = useState(null)
@@ -107,6 +113,9 @@ const MainPage = () => {
 
             {hasErrors && <div>Error...</div>}
             {loading && <div>Loading....</div>}
+
+
+            <button onClick={()=>postData(boards)}>TESTPOST</button>
 
 
             <div style={{ display: 'flex', flexDirection: 'row' }}>

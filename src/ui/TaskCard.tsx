@@ -53,16 +53,23 @@ const Container = styled.div`
     
     
     .title{
-        font-family: Inter,sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: bold;
         text-align: left;
+        overflow-x:hidden;
+        word-wrap: break-word;
         
     }
     
     .description {
         display: flex;    
-        font-family: Inter, sans-serif;
+        font-family: 'Inter', sans-serif;
+        height: fit-content;
+        width: 90%;
+        overflow-x:hidden;
+        word-wrap: break-word;
+        
         font-size: 12px;
         font-weight: 400;
         line-height: 14px;
@@ -78,7 +85,7 @@ const Container = styled.div`
         background-color:gray;
         //background-color: gray;
         border-radius: 10px;
-        font-family: Inter, sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 12px;
         font-weight: 400;
         line-height: 14px;
@@ -99,7 +106,7 @@ const Container = styled.div`
     
     .tag {
         width: fit-content;
-        font-family: Inter, sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 12px;
         font-weight: 400;
         line-height: 14px;
