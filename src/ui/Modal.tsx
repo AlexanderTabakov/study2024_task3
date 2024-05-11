@@ -79,14 +79,22 @@ const Container = styled.div`
     } 
     
 `
-
+const Tag = styled.span`
+    padding: 5px;
+    margin: 2px;
+    background-color: #FFF6E1;
+    color:#52565C;
+    border-radius: 10px;
+    display: inline-block;
+`;
 const Modal = () => {
 
-    const { getData, postData,addTask, removeTask } = useStore();
+    const { getData, postData, addTask, removeTask } = useStore();
     const [formValues, setFormValues] = useState(null)
     const [taskName, setTaskName] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
-    const [tag, setTag] = useState('')
+    const [tags, setTags] = useState([]);
+    const [inputTag, setInputTag] = useState('');
 
     const changeTaskName = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setTaskName((e.target as HTMLInputElement).value.trim());
@@ -101,11 +109,20 @@ const Modal = () => {
 
     // console.log('taskDescription', taskDescription)
 
-    const changeTag = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setTag((e.target as HTMLInputElement).value.trim());
+    // const changeTag = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    //     setTags((e.target as HTMLInputElement).value.trim());
+    // };
+
+    const handleAddTag = () => {
+        if (inputTag && !tags.includes(inputTag)) {
+            setTags([...tags, inputTag]);
+            setInputTag('');
+        }
     };
 
-
+    const handleRemoveTag = (tagToRemove: any) => {
+        setTags(tags.filter(tag => tag !== tagToRemove));
+    };
     const onSubmit = (e: Event) => {
         e.preventDefault()
         let id = Date.now()
@@ -113,7 +130,7 @@ const Modal = () => {
             id: id,
             taskName: taskName,
             taskDescription: taskDescription,
-            tag: tag
+            tags: tags
         }
 
         // setFormValues(newFormValue)
@@ -123,7 +140,7 @@ const Modal = () => {
         // Очистить поля ввода после отправки
         setTaskName('');
         setTaskDescription('');
-        setTag('');
+        setTags([]);
         console.log('newFormValue', newFormValue)
         console.log('formValues', formValues)
     }
@@ -136,7 +153,7 @@ const Modal = () => {
         setFormValues(null)
         setTaskName('')
         setTaskDescription('')
-        setTag('')
+        setTags([]);
     }
 
 
@@ -177,15 +194,23 @@ const Modal = () => {
                 </label>
                 <span className={"placeHolderSpan"}></span>
                 <input
-                    name={'titleTag'}
-                    className={'input'}
                     type='text'
-                    id='titleTag'
-                    value={tag}
-                    onChange={changeTag}
+                    placeholder='Add a tag'
+                    value={inputTag}
+                    onChange={(e) => setInputTag(e.target.value)}
+                    onKeyUp={(e) => e.key === 'Enter' && handleAddTag()}
                 />
-                <span><button>+</button></span>
+                <button onClick={handleAddTag}>+</button>
+
+                <div>
+                    {tags.map((tag, index) => (
+                        <Tag key={index} onClick={() => handleRemoveTag(tag)}>
+                            {tag} X
+                        </Tag>
+                    ))}
+                </div>
             </div>
+
 
             <div className={'btns'}>
                 <Button type={'submit'} children={'Save'} onClick={() => onSubmit(event)} />

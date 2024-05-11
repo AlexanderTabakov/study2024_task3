@@ -8,7 +8,7 @@ interface ITaskCard {
     description: string,
     id: number;
     status: string;
-    tag?: string;
+    tag?: string[]; //массив, т.к несколько штук
     onDragStart?: (e: React.DragEvent) => void;
     onDragOver?: (e: React.DragEvent) => void;
     onDrop?: (e: React.DragEvent) => void;
@@ -98,16 +98,11 @@ const Container = styled.div`
     }
     
     .tag {
-        width: fit-content;
-        font-family: Inter, sans-serif;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 14px;
-        text-align: left;
-        background-color: #FFF6E1;
+        padding: 5px;
+        margin: 2px;
+        background-color: #e0e0e0;
         border-radius: 10px;
-        padding: 3px;
-
+        display: inline-block;
     }
     
     
@@ -176,7 +171,9 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
                 <div className={'dot'} style={{ background: handleDotColor() }}></div>
                 <p> {status}</p></div>
             <div className={'tagLayout'}>
-                <p className={'tag'}> {tag}</p>
+                {tag?.map((tag, index) => {
+                    <p key={index} className={'tag'}> {tag}</p>
+                })}
             </div>
         </Container >
     );
