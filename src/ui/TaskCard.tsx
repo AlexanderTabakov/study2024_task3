@@ -110,7 +110,7 @@ const Container = styled.div`
   }
 `;
 
-`
+
 
 const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver, id }) => {
 
@@ -159,7 +159,7 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
             return '#BBBFC4'
         }
     }
-  };
+  ;
 
   return (
     <Container
