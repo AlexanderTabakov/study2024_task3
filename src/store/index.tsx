@@ -19,7 +19,8 @@ export interface IState {
   loading: boolean;
   hasErrors: boolean;
   getData?: () => Promise<void>;
-  postData?: (task: IItem, id: number) => Promise<void>; /// TODO разобраться с типами!!!!
+  postData?: any; /// TODO разобраться с типами!!!!
+  // postData?: (task: IItem, id: number) => Promise<void>; /// TODO разобраться с типами!!!!
   addTask?: (newTask: IItem) => void;
   removeTask?: (id: number) => void;
 }
@@ -76,15 +77,24 @@ const useStore = create(
       set({ data: newData });
     },
 
-    postData: async (data: IItem, id: number) => {
+    postData: async (upDatedItems: IItem, id: number) => {
       set(() => ({ loading: true }));
       try {
-        await axios.put(
+       const response = await axios.put(
           `https://66374e40288fedf6937ffce3.mockapi.io/boards/${id}`,
           {
-            data: data,
+            items: upDatedItems,
           },
+
         );
+
+        // @ts-ignore
+        set((state:IState) => ({
+          data: state.data.map((column) =>
+              column.id === id ? { ...column, items: upDatedItems } : column
+          ),
+          loading: false,
+        }));
 
         set((state: IState) => ({
           loading: false,

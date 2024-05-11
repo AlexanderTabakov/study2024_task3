@@ -18,6 +18,8 @@ const MainPage = () => {
   }, [data]);
   console.log(data[0].items);
 
+
+
   const [currentBoard, setCurrentBoard] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
 
@@ -32,23 +34,44 @@ const MainPage = () => {
   };
 
 
+    const dropCardHandler = (e: React.DragEvent, board: IData) => {
+        e.preventDefault();
+        const newItems = [...board.items, currentItem];
+        const currentIndex = currentBoard.items.indexOf(currentItem);
+        currentBoard.items.splice(currentIndex, 1);
+        setBoards(
+            boards?.map((b: IData) => {
+                if (b.id === board.id) {
+                    return { ...b, items: newItems };
+                }
+                if (b.id === currentBoard.id) {
+                    return { ...currentBoard, items: currentBoard.items };
+                }
+                return b;
+            }),
+        );
 
-  const dropCardHandler = (e: React.DragEvent, board: IData) => {
-    board.items.push(currentItem);
-    const currentIndex = currentBoard.items.indexOf(currentItem);
-    currentBoard.items.splice(currentIndex, 1);
-    setBoards(
-      boards?.map((b: IData) => {
-        if (b.id === board.id) {
-          return board;
-        }
-        if (b.id === currentBoard.id) {
-          return currentBoard;
-        }
-        return b;
-      }),
-    );
-  };
+        postData(newItems, board.id);
+    };
+
+
+
+  // const dropCardHandler = (e: React.DragEvent, board: IData) => {
+  //   board.items.push(currentItem);
+  //   const currentIndex = currentBoard.items.indexOf(currentItem);
+  //   currentBoard.items.splice(currentIndex, 1);
+  //   setBoards(
+  //     boards?.map((b: IData) => {
+  //       if (b.id === board.id) {
+  //         return board;
+  //       }
+  //       if (b.id === currentBoard.id) {
+  //         return currentBoard;
+  //       }
+  //       return b;
+  //     }),
+  //   );
+  // };
 
   function dragEndHandler(e: React.DragEvent) {}
   function dragLeaveHandler(e: React.DragEvent) {}
@@ -59,9 +82,6 @@ const MainPage = () => {
       {hasErrors && <div>Error...</div>}
       {loading && <div>Loading....</div>}
 
-      <button onClick={() => postData(currentBoard, currentBoard.id)}>
-        TESTPOST
-      </button>
 
       <div style={{ display: "flex", flexDirection: "row" }}>
         {data?.map((board: IData) => (
