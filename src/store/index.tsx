@@ -12,7 +12,7 @@ export interface IItem {
     id: number;
     taskName: string;
     taskDescription?: string;
-    tag?: string[]
+    tags?: string[]
 }
 
 export interface IState {

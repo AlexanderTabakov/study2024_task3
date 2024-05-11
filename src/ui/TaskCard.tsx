@@ -108,6 +108,14 @@ const Container = styled.div`
     
 
 `
+const Tag = styled.span`
+    padding: 5px;
+    margin: 2px;
+    background-color: #FFF6E1;
+    color:#52565C;
+    border-radius: 10px;
+    display: inline-block;
+`;
 
 const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver, id }) => {
 
@@ -171,10 +179,12 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
                 <div className={'dot'} style={{ background: handleDotColor() }}></div>
                 <p> {status}</p></div>
             <div className={'tagLayout'}>
-                {tag?.map((tag, index) => {
-                    <p key={index} className={'tag'}> {tag}</p>
-                })}
+                {tag && tag.map((tagItem, index) => (
+                    <Tag key={index}>{tagItem}</Tag>
+                ))}
             </div>
+
+
         </Container >
     );
 };

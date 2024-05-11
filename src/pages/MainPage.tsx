@@ -108,7 +108,7 @@ const MainPage = () => {
                                 title={item?.taskName}
                                 description={item?.taskDescription}
                                 status={board?.title}
-                                tag={item?.tag}
+                                tag={item?.tags}
                                 onDragStart={(e: React.DragEvent) => dragStartHandler(e, board, item)}
                                 onDragOver={(e: React.DragEvent) => dragOverHandler(e)}
                                 // onDrop={(e: React.DragEvent) => dropHandler(e, board, item)}
