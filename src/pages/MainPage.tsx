@@ -3,6 +3,27 @@ import useStore, { IData, IItem } from "store";
 import TaskCard from "ui/TaskCard";
 import Column from "ui/Column";
 import Modal from "ui/Modal";
+import styled from "styled-components";
+
+const Container = styled.main`
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    .loading{
+        width: 20px;
+        position:absolute ;
+        top:15%;
+        left:25%;
+    }
+
+    .error{
+        position:absolute ;
+        top:50%;
+        left:50%;
+    }
+    
+`
 
 const MainPage = () => {
   const { data, loading, hasErrors, postData } =
@@ -76,11 +97,14 @@ const MainPage = () => {
   function dragEndHandler(e: React.DragEvent) {}
   function dragLeaveHandler(e: React.DragEvent) {}
   return (
-    <>
+        <Container>
       <Modal />
 
-      {hasErrors && <div>Error...</div>}
-      {loading && <div>Loading....</div>}
+      {hasErrors && <div className={'error'}>Error...</div>}
+      {loading && <div className={'loading'}>Loading....</div>}
+
+
+
 
 
       <div style={{ display: "flex", flexDirection: "row" }}>
@@ -110,7 +134,7 @@ const MainPage = () => {
           </Column>
         ))}
       </div>
-    </>
+    </Container>
   );
 };
 

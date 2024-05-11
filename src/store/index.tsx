@@ -106,6 +106,6 @@ const useStore = create(
   })),
 );
 
-useStore.getState().getData();
+// useStore.getState().getData();
 
 export default useStore;
