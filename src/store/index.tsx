@@ -43,7 +43,7 @@ const useStore = create(
             set(() => ({ loading: true }));
             try {
                 const response = await axios.get(
-                    "https://66374e40288fedf6937ffce3.mockapi.io/boards",
+                    "https://66374e40288fedf6937ffce3.mockapi.io/boards/",
                 );
 
                 set((state: IState) => ({
@@ -75,21 +75,15 @@ const useStore = create(
                 items: column.items.filter(item => item.id !== id)
             }));
             set({ data: newData });
-        }
-        ,
+        },
+
 
 
 
         postData: async (data) => {
             set(() => ({ loading: true }));
             try {
-                //  await axios({
-                //     url:"https://66374e40288fedf6937ffce3.mockapi.io/boards",
-                //     data:task
-                // });
-                await axios.post("https://66374e40288fedf6937ffce3.mockapi.io/boards", {
-                    data: data
-                });
+                await axios.put("https://66374e40288fedf6937ffce3.mockapi.io/boards"+ data.id, data);
 
                 set((state: IState) => ({
                     loading: false,
@@ -102,7 +96,7 @@ const useStore = create(
     })),
 );
 
-// useStore.getState().getData();
+useStore.getState().getData();
 
 
 export default useStore;

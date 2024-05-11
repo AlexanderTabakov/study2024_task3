@@ -14,26 +14,11 @@ const MainPage = () => {
         return <Modal />
     }
 
-    // const [boards, setBoards] = useState([
-    //     { id: 1, title: "Not Started", items: [{ id: 1, title: "todo1" }, { id: 2, title: "todo2" }, { id: 3, title: "todo3" },] },
-    //     { id: 2, title: "Ready", items: [{ id: 1, title: "ReadyTodo1" }, { id: 2, title: "Readytodo2" }, { id: 3, title: "Readytodo3" },] },
-    //     { id: 3, title: "In progress", items: [{ id: 1, title: "Inprogresstodo1" }, { id: 2, title: "Inprogresstodo2" }, { id: 3, title: "Inprogresstodo3" },] },
-    //     { id: 4, title: "Blocked", items: [{ id: 1, title: "Blockedtodo1" }, { id: 2, title: "Blockedtodo2" }, { id: 3, title: "Blockedtodo3" },] },
-    //     { id: 5, title: "Done", items: [{ id: 1, title: "Donetodo1" }, { id: 2, title: "Donetodo2" }, { id: 3, title: "Donetodo3" },] },
-    //     { id: 6, title: "Cancelled", items: [{ id: 1, title: "Cancelledtodo1" }, { id: 2, title: "Cancelledtodo2" }, { id: 3, title: "Cancelledtodo3" },] },
-    // ])
-
     const [boards, setBoards] = useState(null)
     useEffect(() => {
         setBoards(data)
     }, [data]);
     console.log(data[0].items)
-
-    // useEffect(() => {
-    //     postData(boards)
-    // }, []);
-
-
 
 
     const [currentBoard, setCurrentBoard] = useState(null)
@@ -115,7 +100,7 @@ const MainPage = () => {
             {loading && <div>Loading....</div>}
 
 
-            <button onClick={()=>postData(boards)}>TESTPOST</button>
+            <button onClick={()=>postData(currentBoard)}>TESTPOST</button>
 
 
             <div style={{ display: 'flex', flexDirection: 'row' }}>

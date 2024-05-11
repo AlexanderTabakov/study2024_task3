@@ -39,9 +39,7 @@ const Container = styled.div`
         height: clamp(30px, 2vw, 56px);
         font-family: 'Inter', sans-serif;
         font-weight: 400;
-        font-size: 12px;
-        font-size: 12px;
-        font-weight: 400;
+        font-size: 12px;        
         line-height: 14px;
         text-align: left;
         border: none;
