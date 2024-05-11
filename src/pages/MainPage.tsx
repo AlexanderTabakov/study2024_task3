@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useStore, {IData, IItem} from "store";
+import useStore, { IData, IItem } from "store";
 import TaskCard from "ui/TaskCard";
 import Column from "ui/Column";
 import Modal from "ui/Modal";
@@ -52,7 +52,7 @@ const MainPage = () => {
         currentBoard.items.splice(currentIndex, 1)
         const dropIndex = board.items.indexOf(item)
         board.items.splice(dropIndex + 1, 0, currentItem)
-        setBoards(boards.map((b:IData) => {
+        setBoards(boards.map((b: IData) => {
             if (b.id === board.id) {
                 return board
             }
@@ -84,7 +84,7 @@ const MainPage = () => {
         board.items.push(currentItem)
         const currentIndex = currentBoard.items.indexOf(currentItem)
         currentBoard.items.splice(currentIndex, 1)
-        setBoards(boards?.map((b:IData) => {
+        setBoards(boards?.map((b: IData) => {
             if (b.id === board.id) {
                 return board
             }
@@ -110,14 +110,14 @@ const MainPage = () => {
 
 
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {data?.map((board:IData) =>
+                {data?.map((board: IData) =>
                     <Column
                         key={board?.id}
                         title={board?.title}
                         onDragOver={(e: React.DragEvent) => dragOverHandler(e)}
                         onDrop={(e: React.DragEvent) => dropCardHandler(e, board)}
                     >
-                        {board?.items.map((item:IItem) =>
+                        {board?.items.map((item: IItem) =>
                             <TaskCard
                                 id={item?.id}
                                 key={item?.id}

@@ -6,7 +6,7 @@ import useStore from "store";
 interface ITaskCard {
     title: string,
     description: string,
-    id:number;
+    id: number;
     status: string;
     tag?: string;
     onDragStart?: (e: React.DragEvent) => void;
@@ -114,9 +114,9 @@ const Container = styled.div`
 
 `
 
-const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver, id}) => {
+const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop, onDragStart, onDragOver, id }) => {
 
-    const {removeTask} = useStore()
+    const { removeTask } = useStore()
 
     const handleColor = () => {
         if (status === "Not Started") {
@@ -142,7 +142,7 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
 
     const handleDotColor = () => {
         if (status === "Not Started") {
-            return"#BBBFC4"
+            return "#BBBFC4"
         }
 
         if (status === "Ready") {
@@ -169,10 +169,10 @@ const TaskCard: React.FC<ITaskCard> = ({ title, description, tag, status, onDrop
             onDrop={onDrop}
         >
             <div className={'title'}> <h3> {title} </h3>
-                <button onClick={()=>removeTask(id)}>x</button> </div>
+                <button onClick={() => removeTask(id)}>x</button> </div>
             <div className={'description'}>  <p> {description}</p>  </div>
             <div className={'status'}
-                 style={{ background: handleColor() }}>
+                style={{ background: handleColor() }}>
                 <div className={'dot'} style={{ background: handleDotColor() }}></div>
                 <p> {status}</p></div>
             <div className={'tagLayout'}>

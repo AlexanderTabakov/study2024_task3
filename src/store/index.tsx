@@ -4,36 +4,36 @@ import axios from "axios";
 import column from "ui/Column";
 
 
-export interface IData  {
-    id:number,
-    title:string;
-    items:IItem[]
+export interface IData {
+    id: number,
+    title: string;
+    items: IItem[]
 }
 export interface IItem {
-    id?:number;
-    title?:string;
+    id?: number;
+    title?: string;
 }
 
 export interface IState {
     data: IData[];
     loading: boolean;
     hasErrors: boolean;
-    getData?:any;
-    postData?:any; /// TODO разобраться с типами!!!!
-    addTask?:any
-    removeTask?:any
+    getData?: any;
+    postData?: any; /// TODO разобраться с типами!!!!
+    addTask?: any
+    removeTask?: any
 
 }
 
 
 const useStore = create(
     devtools<IState>((set, get) => ({
-        data:[{ id: 1, title: "Not Started", items: [{ id:76765, title: "todo1" }] },
-            { id: 2, title: "Ready", items: [] },
-            { id: 3, title: "In progress", items: [] },
-            { id: 4, title: "Blocked", items: [] },
-            { id: 5, title: "Done", items: [] },
-            { id: 6, title: "Cancelled", items: [] },],
+        data: [{ id: 1, title: "Not Started", items: [{ id: 76765, title: "todo1" }] },
+        { id: 2, title: "Ready", items: [] },
+        { id: 3, title: "In progress", items: [] },
+        { id: 4, title: "Blocked", items: [] },
+        { id: 5, title: "Done", items: [] },
+        { id: 6, title: "Cancelled", items: [] },],
         loading: false,
         hasErrors: false,
 
@@ -59,37 +59,39 @@ const useStore = create(
         //     set({data:task})
         // },
 
-        addTask (newTask:IItem) {
-            const  columnIndex :any = get().data.find((d)=> d.title==='Not Started');
-            if(columnIndex!==-1) {
+        addTask(newTask: IItem) {
+            const columnIndex: any = get().data.findIndex((d) => d.title === 'Not Started');
+            if (columnIndex !== -1) {
                 const newTasks = [...get().data[columnIndex].items, newTask]
                 const newColumns = [...get().data.slice(0, columnIndex),
-                    {...get().data[columnIndex], items:newTasks},
-                    ...get().data.slice(columnIndex + 1),
+                { ...get().data[columnIndex], items: newTasks },
+                ...get().data.slice(columnIndex + 1),
                 ];
-                set({data:newColumns})
+                set({ data: newColumns })
             }
         },
 
 
-        removeTask (id:number) {
-            const  removeTask:any = [...get().data.filter((t:IItem)=>t.id!==id) ]
-            set({data:removeTask})
-        },
+        removeTask(id: number) {
+            const newData = get().data.map(column => ({
+                ...column,
+                items: column.items.filter(item => item.id !== id)
+            }));
+            set({ data: newData });
+        }
+        ,
 
 
 
-
-
-        postData: async (task:{}) => {
+        postData: async (task: {}) => {
             set(() => ({ loading: true }));
             try {
                 //  await axios({
                 //     url:"https://66374e40288fedf6937ffce3.mockapi.io/boards",
                 //     data:task
                 // });
-                await axios.post("https://66374e40288fedf6937ffce3.mockapi.io/boards",{
-                    data:task
+                await axios.post("https://66374e40288fedf6937ffce3.mockapi.io/boards", {
+                    data: task
                 });
 
                 set((state: IState) => ({
